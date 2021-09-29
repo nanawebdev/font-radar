@@ -1,0 +1,26 @@
+{
+  "name": "FONT-RADAR",
+  "description": "Click on text from WEB page and this extension will show you font styles",
+  "version": "1.0",
+  "manifest_version": 3,
+  "permissions": [
+    "activeTab",
+    "scripting"
+  ],
+  "action": {
+    "default_title": "FONT-RADAR",
+    "default_icon": {
+      "128": "./images/logo128.png",
+      "16": "./images/logo16.png",
+      "24": "./images/logo24.png",
+      "32": "./images/logo32.png"
+    },
+    "default_popup": "popup.html"
+  },
+  "icons": {
+    "128": "./images/logo128.png",
+    "16": "./images/logo16.png",
+    "24": "./images/logo24.png",
+    "32": "./images/logo32.png"
+  }
+}
