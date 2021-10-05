@@ -25,7 +25,7 @@ function addStyles() {
       width: 300px;
       height: auto;
       background-color: #edeef0;
-      box-shadow: 2px 2px 6px 1px #6d6d6d;
+      box-shadow: 1px 3px 5px 0px #6d6d6d;
       padding: 16px 24px;
       padding-bottom: 20px;
       position: relative;
@@ -51,7 +51,22 @@ function addStyles() {
       font-weight: 400;
       color: #000000;
     }
-    
+
+    #ext-font-radar .fr-color-content {
+      display: flex;
+      align-items: center;
+    }
+
+    #ext-font-radar .fr-color-dot {
+      display: inline-block;
+      width: 15px;
+      height: 15px;
+      background: transparent;
+      border-radius: 50%;
+      border: 1px solid #ccc;
+      margin-right: 10px;
+    }
+
     #ext-font-radar .fr-wrapper.font-family-wrapper {
       padding-top: 0;
     }
@@ -167,6 +182,12 @@ function createApp() {
           "font-color-wrapper",
         ]);
         const fontColorData = createElWithClasses("span");
+        const fontColorDot = createElWithClasses("span", ["fr-color-dot"]);
+        const fontColorDataWithDot = createElWithClasses("span", ["fr-color-content"]);
+        fontColorDataWithDot.appendChild(fontColorDot);
+        fontColorDataWithDot.appendChild(fontColorData);
+
+
         const fontHEXColorData = createElWithClasses("span");
         const color = `${getComputedStyle(element).color}`;
         const hexColor = getRGB(color);
@@ -202,6 +223,7 @@ function createApp() {
         fontFamilyData.textContent = `${getComputedStyle(element).fontFamily}`;
         //fontColorWrapper
         fontColorData.textContent = color;
+        fontColorDot.style.backgroundColor = color;
         fontHEXColorData.textContent = hexColor;
         // lineHeightWrapper
         lineHeightData.textContent = `${getComputedStyle(element).lineHeight}`;
@@ -216,7 +238,7 @@ function createApp() {
         // Добавляю данные о шрифтах
         lineHeightWrapper.appendChild(lineHeightData);
         fontColorWrapper.appendChild(fontHEXColorData);
-        fontColorWrapper.appendChild(fontColorData);
+        fontColorWrapper.appendChild(fontColorDataWithDot);
         fontFamilyWrapper.appendChild(fontFamilyData);
         fontWeightWrapper.appendChild(fontWeightData);
         fontSizeWrapper.appendChild(fontSizeData);
@@ -260,7 +282,7 @@ function createApp() {
         return el;
       }
     },
-    onMouseMove(evt) {},
+    onMouseMove(evt) { },
   };
 
   FRApp.init();
