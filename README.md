@@ -60,4 +60,6 @@
  
  👾 <https://github.com/vedmaque> 
  
- 👾 <https://github.com/v-angolenko> 
+ 👾 <https://github.com/v-angolenko>
+ 
+ 👾 https://github.com/Turalinov
