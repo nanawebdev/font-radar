@@ -1,7 +1,7 @@
 @font-face {
   font-family: "Roboto mono";
-  src: url("./RobotoMono-Regular.woff") format("woff"),
-    url("./RobotoMono-Regular.woff2") format("woff2");
+  src: url("./../fonts/RobotoMono-Regular.woff") format("woff"),
+    url("./../fonts/RobotoMono-Regular.woff2") format("woff2");
   font-weight: 400;
 }
 
