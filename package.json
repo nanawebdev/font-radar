@@ -8,7 +8,8 @@
     "build": "webpack --mode=production",
     "watch": "webpack --watch",
     "start": "webpack serve --open",
-    "lint": "eslint ./src/**/*"
+    "dev": "npm run start",
+    "lint": "eslint ./src/**/*.js"
   },
   "keywords": [],
   "author": "",

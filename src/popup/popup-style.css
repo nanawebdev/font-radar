@@ -1,0 +1,41 @@
+@font-face {
+  font-family: "Roboto mono";
+  src: url("./../fonts/RobotoMono-Regular.woff") format("woff"),
+    url("./../fonts/RobotoMono-Regular.woff2") format("woff2");
+  font-weight: 400;
+}
+
+.fr-ext-popup {
+  position: relative;
+  padding: 8px 16px;
+}
+
+.fr-ext-popup__title {
+  padding: 0;
+  margin: 0;
+  padding-bottom: 8px;
+}
+
+.fr-ext-popup__steps {
+  font-family: "Roboto mono", monospace;
+  white-space: nowrap;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.fr-ext-popup__step {
+  padding-bottom: 8px;
+}
+
+.fr-ext-popup__button {
+  cursor: pointer;
+  font-family: "Roboto mono", monospace;
+  color: #2400FF;
+  background-color: #edeef0;
+  border: none;
+  padding: 4px 6px;
+}
