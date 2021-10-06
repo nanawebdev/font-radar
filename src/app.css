@@ -1,7 +1,6 @@
 @font-face {
-  font-family: "Roboto mono";
-  src: url("./RobotoMono-Regular.woff") format("woff"),
-  url("./RobotoMono-Regular.woff2") format("woff2");
+  font-family: 'Roboto mono';
+  src: url('./RobotoMono-Regular.woff') format('woff'), url('./RobotoMono-Regular.woff2') format('woff2');
   font-weight: 400;
 }
 
@@ -14,59 +13,79 @@
 }
 
 #ext-font-radar .font-radar-popup {
-  font-family: "Roboto mono",  monospace;
+  font-family: 'Roboto mono', monospace;
   display: flex;
   flex-direction: column;
   width: 300px;
   height: auto;
-  background-color: #edeef0;
+  background-color: #ffffff;
   box-shadow: 1px 3px 5px 0px #6d6d6d;
-  padding: 16px 24px;
-  padding-bottom: 20px;
+  padding: 40px 30px;
+  border-radius: 20px;
   position: relative;
+  overflow: hidden;
 }
 
 #ext-font-radar .fr-title {
-  font-family: "Roboto mono",  monospace;
+  font-family: 'Roboto mono', monospace;
   font-weight: normal;
   font-size: 12px;
   line-height: 16px;
   font-weight: 400;
   padding-bottom: 6px;
   color: #7a7a7a;
+  margin-left: auto;
 }
 
 #ext-font-radar .fr-wrapper {
   display: flex;
   flex-direction: column;
-  padding-top: 12px;
-  text-transform: uppercase;
-  font-size: 18px;
-  line-height: 22px;
+  font-size: 16px;
+  line-height: 18px;
   font-weight: 400;
   color: #000000;
 }
 
+#ext-font-radar .fr-wrapper + .fr-wrapper {
+  margin-top: 12px;
+}
+
+#ext-font-radar .font-color-wrapper {
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+}
+
+#ext-font-radar .fr-wrapper.font-color-wrapper {
+  margin-top: 22px;
+}
+
 #ext-font-radar .fr-color-content {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
 #ext-font-radar .fr-color-dot {
-  display: inline-block;
-  width: 15px;
-  height: 15px;
+  width: 50px;
+  height: auto;
   background: transparent;
-  border-radius: 50%;
-  border: 1px solid #cccccc;
-  margin-right: 10px;
+  border-radius: 10%;
+}
+
+#ext-font-radar .fr-data {
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  padding: 12px 13px;
+  text-align: center;
+  flex-grow: 1;
 }
 
 #ext-font-radar .fr-wrapper.font-family-wrapper {
   padding-top: 0;
 }
 
-.fr-popup-mask {
+#ext-font-radar .fr-popup-mask {
   position: absolute;
   top: 0;
   left: 0;
@@ -77,6 +96,7 @@
   z-index: 2;
   background-position: center;
   cursor: pointer;
+  background: linear-gradient(180.01deg, #0500FF 0.01%, rgba(5, 0, 253, 0.25) 77.34%);
 }
 
 #ext-font-radar .font-radar-popup:hover .fr-popup-mask {

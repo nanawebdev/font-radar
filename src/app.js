@@ -2,24 +2,24 @@ import appStyle from './app.css?raw'
 
 export const FRApp = {
   createRootEl() {
-    console.log('creating root element')
+    // console.log('creating root element')
     this.rootElement = document.createElement('div')
     this.rootElement.setAttribute('id', 'ext-font-radar')
     document.body.appendChild(this.rootElement)
   },
   start() {
-    console.log('start')
+    // console.log('start')
     this.createRootEl()
     this.bindedOnMouseOver = this.onMouseOver.bind(this)
     document.addEventListener('mouseover', this.bindedOnMouseOver)
   },
   stop() {
-    console.log('stop')
+    // console.log('stop')
     document.body.removeChild(this.rootElement)
     document.removeEventListener('mouseover', this.bindedOnMouseOver)
   },
   init() {
-    console.log('init')
+    // console.log('init')
     this.addStyles()
   },
   addStyles() {
@@ -35,41 +35,37 @@ export const FRApp = {
 
       // fontSizeWrapper
       const fontSizeWrapper = createElWithClasses('div', ['fr-wrapper', 'font-size-wrapper'])
-      const fontSizeData = createElWithClasses('span')
+      const fontSizeData = createElWithClasses('span', ['fr-data'])
       const fontSizeTitle = createElWithClasses('span', ['fr-title'])
       fontSizeTitle.textContent = 'Font-size'
 
       // fontWeightWrapper
       const fontWeightWrapper = createElWithClasses('div', ['fr-wrapper', 'font-weight-wrapper'])
-      const fontWeightData = createElWithClasses('span')
+      const fontWeightData = createElWithClasses('span', ['fr-data'])
       const fontWeightTitle = createElWithClasses('span', ['fr-title'])
       fontWeightTitle.textContent = 'Font-weight'
 
       // fontFamilyWrapper
       const fontFamilyWrapper = createElWithClasses('div', ['fr-wrapper', 'font-family-wrapper'])
-      const fontFamilyData = createElWithClasses('span')
-      const fontFamilyTitle = createElWithClasses('span', ['fr-title'])
-      fontFamilyTitle.textContent = 'Font-family'
+      const fontFamilyData = createElWithClasses('span', ['fr-data'])
 
       // lineHeightWrapper
       const lineHeightWrapper = createElWithClasses('div', ['fr-wrapper', 'line-height-wrapper'])
-      const lineHeightData = createElWithClasses('span')
+      const lineHeightData = createElWithClasses('span', ['fr-data'])
       const lineHeightTitle = createElWithClasses('span', ['fr-title'])
       lineHeightTitle.textContent = 'Line-height'
 
       // fontColorWrapper
-      const fontColorWrapper = createElWithClasses('div', ['fr-wrapper', 'font-color-wrapper'])
+      const fontColorWrapper = createElWithClasses('div', ['fr-wrapper', 'font-color-wrapper', ['fr-data']])
       const fontColorData = createElWithClasses('span')
-      const fontColorDot = createElWithClasses('span', ['fr-color-dot'])
-      const fontColorDataWithDot = createElWithClasses('span', ['fr-color-content'])
-      fontColorDataWithDot.appendChild(fontColorDot)
-      fontColorDataWithDot.appendChild(fontColorData)
-
       const fontHEXColorData = createElWithClasses('span')
+
+      // Окошко с визуалтзацией цвета
+      const fontColorDot = createElWithClasses('div', ['fr-color-dot'])
+      // контейнер для hex & rgba
+      const fontColorContent = createElWithClasses('span', ['fr-color-content'])
       const color = `${getComputedStyle(element).color}`
       const hexColor = getRGB(color)
-      const fontColorTitle = createElWithClasses('span', ['fr-title'])
-      fontColorTitle.textContent = 'Font-color'
 
       // маска
       const mask = createElWithClasses('div', ['fr-popup-mask'])
@@ -106,15 +102,16 @@ export const FRApp = {
 
       // Добавляю заголовки
       lineHeightWrapper.appendChild(lineHeightTitle)
-      fontColorWrapper.appendChild(fontColorTitle)
-      fontFamilyWrapper.appendChild(fontFamilyTitle)
       fontWeightWrapper.appendChild(fontWeightTitle)
       fontSizeWrapper.appendChild(fontSizeTitle)
 
       // Добавляю данные о шрифтах
+      fontColorWrapper.appendChild(fontColorData)
+      fontColorContent.appendChild(fontColorData)
+      fontColorContent.appendChild(fontHEXColorData)
+      fontColorWrapper.appendChild(fontColorDot)
       lineHeightWrapper.appendChild(lineHeightData)
-      fontColorWrapper.appendChild(fontHEXColorData)
-      fontColorWrapper.appendChild(fontColorDataWithDot)
+      fontColorWrapper.appendChild(fontColorContent)
       fontFamilyWrapper.appendChild(fontFamilyData)
       fontWeightWrapper.appendChild(fontWeightData)
       fontSizeWrapper.appendChild(fontSizeData)
