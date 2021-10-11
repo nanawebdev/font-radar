@@ -55,6 +55,12 @@ export const FRApp = {
       const lineHeightTitle = createElWithClasses('span', ['fr-title'])
       lineHeightTitle.textContent = 'Line-height'
 
+      //letter-spacing wrapper
+      const letterSpacingWrapper = createElWithClasses('div', ['fr-wrapper', 'letter-spacing-wrapper'])
+      const letterSpacinData = createElWithClasses('span', ['fr-data'])
+      const letterSpacinTitle = createElWithClasses('span', ['fr-title'])
+      letterSpacinTitle.textContent = 'Letter-spacing'
+
       // fontColorWrapper
       const fontColorWrapper = createElWithClasses('div', ['fr-wrapper', 'font-color-wrapper', ['fr-data']])
       const fontColorData = createElWithClasses('span')
@@ -99,11 +105,14 @@ export const FRApp = {
       fontHEXColorData.textContent = hexColor
       // lineHeightWrapper
       lineHeightData.textContent = `${getComputedStyle(element).lineHeight}`
+      // letterSpacinData
+      letterSpacinData.textContent = `${getComputedStyle(element).letterSpacing}`
 
       // Добавляю заголовки
       lineHeightWrapper.appendChild(lineHeightTitle)
       fontWeightWrapper.appendChild(fontWeightTitle)
       fontSizeWrapper.appendChild(fontSizeTitle)
+      letterSpacingWrapper.appendChild(letterSpacinTitle)
 
       // Добавляю данные о шрифтах
       fontColorWrapper.appendChild(fontColorData)
@@ -115,6 +124,7 @@ export const FRApp = {
       fontFamilyWrapper.appendChild(fontFamilyData)
       fontWeightWrapper.appendChild(fontWeightData)
       fontSizeWrapper.appendChild(fontSizeData)
+      letterSpacingWrapper.appendChild(letterSpacinData)
 
       // Добавляю контейнеры с заголовками и данными в попап
       popup.appendChild(mask)
@@ -123,6 +133,7 @@ export const FRApp = {
       popup.appendChild(fontWeightWrapper)
       popup.appendChild(fontSizeWrapper)
       popup.appendChild(lineHeightWrapper)
+      popup.appendChild(letterSpacingWrapper)
 
       // popup.setAttribute('draggable', true)
 
