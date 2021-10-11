@@ -14,13 +14,26 @@
       "16": "./images/logo16.png",
       "24": "./images/logo24.png",
       "32": "./images/logo32.png"
-    },
-    "default_popup": "popup.html"
+    }
+  },
+  "content_scripts": [ {
+    "matches": ["http://*/*", "https://*/*"],
+    "js": ["content.js"],
+    "all_frames": true
+  }],
+  "background": {
+    "service_worker": "background.js"
   },
   "icons": {
     "128": "./images/logo128.png",
     "16": "./images/logo16.png",
     "24": "./images/logo24.png",
     "32": "./images/logo32.png"
-  }
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [ "fonts/*" ],
+      "matches": ["http://*/*", "https://*/*"]
+    }
+  ]
 }

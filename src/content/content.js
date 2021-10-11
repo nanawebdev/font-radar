@@ -1,6 +1,6 @@
-import appStyle from './app.css?raw'
+import appStyle from './../app.css?raw'
 
-export const FRApp = {
+window.FRApp = {
   createRootEl() {
     // console.log('creating root element')
     this.rootElement = document.createElement('div')
@@ -135,9 +135,6 @@ export const FRApp = {
       popup.appendChild(lineHeightWrapper)
       popup.appendChild(letterSpacingWrapper)
 
-      // popup.setAttribute('draggable', true)
-
-      // console.log(this)
       rootElement.appendChild(popup)
       return popup
     }
