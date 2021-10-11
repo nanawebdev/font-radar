@@ -1,6 +1,8 @@
 import appStyle from './../app.css?raw'
 
 window.FRApp = {
+  initialized: false,
+
   createRootEl() {
     // console.log('creating root element')
     this.rootElement = document.createElement('div')
@@ -8,6 +10,10 @@ window.FRApp = {
     document.body.appendChild(this.rootElement)
   },
   start() {
+    if (!this.initialized) {
+      this.init()
+      this.initialized = true
+    }
     // console.log('start')
     this.createRootEl()
     this.bindedOnMouseOver = this.onMouseOver.bind(this)
