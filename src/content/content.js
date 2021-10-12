@@ -2,6 +2,7 @@ import appStyle from './../app.css?raw'
 
 window.FRApp = {
   initialized: false,
+  started: false,
 
   createRootEl() {
     // console.log('creating root element')
@@ -10,6 +11,9 @@ window.FRApp = {
     document.body.appendChild(this.rootElement)
   },
   start() {
+    if (this.started) {
+      return
+    }
     if (!this.initialized) {
       this.init()
       this.initialized = true
@@ -18,11 +22,16 @@ window.FRApp = {
     this.createRootEl()
     this.bindedOnMouseOver = this.onMouseOver.bind(this)
     document.addEventListener('mouseover', this.bindedOnMouseOver)
+    this.started = true
   },
   stop() {
+    if (!this.started) {
+      return
+    }
     // console.log('stop')
     document.body.removeChild(this.rootElement)
     document.removeEventListener('mouseover', this.bindedOnMouseOver)
+    this.started = false
   },
   init() {
     // console.log('init')
