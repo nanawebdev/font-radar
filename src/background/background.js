@@ -1,5 +1,7 @@
 // состояние приложения в разных вкладках
-// { [tabId]: true | false }
+// {
+//   [tabId]: true | false
+// }
 let appStarted = {}
 
 // при старте браузера расширение выключено
@@ -15,7 +17,11 @@ chrome.runtime.onInstalled.addListener(() => {
 // при переключении на другой таб, проверяем, было ли там включено расширение
 // синхронизируем состояние с иконкой
 chrome.tabs.onActivated.addListener((activeInfo) => {
-  setIcon(activeInfo.tabId)
+  if (isAppStarted(activeInfo.tabId)) {
+    setActiveIcon()
+  } else {
+    setInactiveIcon()
+  }
 })
 
 // после загрузки страницы, проверяем, было ли включено расширение
@@ -32,7 +38,7 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo) => {
 })
 
 chrome.action.onClicked.addListener((tab) => {
-  onExtensionClick(tab.id)
+  toggleStartStop(tab.id)
 })
 
 function start() {
@@ -43,7 +49,7 @@ function stop() {
   window.FRApp.stop()
 }
 
-function onExtensionClick(tabId) {
+function toggleStartStop(tabId) {
   if (isAppStarted(tabId)) {
     stopApp(tabId)
 
@@ -51,6 +57,8 @@ function onExtensionClick(tabId) {
       target: { tabId: tabId },
       function: stop,
     })
+
+    setInactiveIcon()
   } else {
     startApp(tabId)
 
@@ -58,9 +66,9 @@ function onExtensionClick(tabId) {
       target: { tabId: tabId },
       function: start,
     })
-  }
 
-  setIcon(tabId)
+    setActiveIcon()
+  }
 }
 
 function isAppStarted(tabId) {
@@ -75,18 +83,10 @@ function stopApp(tabId) {
   return (appStarted[tabId] = false)
 }
 
-function setIcon(tabId) {
-  if (isAppStarted(tabId)) {
-    setActiveIcon()
-  } else {
-    setInactiveIcon()
-  }
-}
-
 function setInactiveIcon() {
   chrome.action.setIcon({ path: '/images/inactive.png' })
 }
 
 function setActiveIcon() {
-  chrome.action.setIcon({ path: '/images/logo128.png' })
+  chrome.action.setIcon({ path: '/images/active.png' })
 }
