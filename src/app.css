@@ -1,16 +1,18 @@
 @font-face {
   font-family: 'Roboto mono';
-  src: url('chrome-extension://eaeoifcdhdpbinfdhgjehgbpelmdgjpm/fonts/RobotoMono-Regular.woff') format('woff'),
-  url('chrome-extension://eaeoifcdhdpbinfdhgjehgbpelmdgjpm/fonts/RobotoMono-Regular.woff2') format('woff2');
+  src: url('chrome-extension://blkijmbnkhgeohhfimngpeblcdkhoabf/fonts/RobotoMono-Regular.woff') format('woff'),
+  url('chrome-extension://blkijmbnkhgeohhfimngpeblcdkhoabf/fonts/RobotoMono-Regular.woff2') format('woff2');
   font-weight: 400;
 }
 
 #ext-font-radar {
   z-index: 10000;
   position: fixed;
-  top: 50%;
-  right: 1%;
-  transform: translateY(-50%);
+  top: 0;
+  left: 0;
+  /* top: 50%; */
+  /* right: 1%; */
+  /* transform: translateY(-50%); */
 }
 
 #ext-font-radar .font-radar-popup {

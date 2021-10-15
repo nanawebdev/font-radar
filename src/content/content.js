@@ -4,12 +4,27 @@ window.FRApp = {
   initialized: false,
   started: false,
 
+  isMoving: false,
+  initialPopupPosition: {
+    x: null,
+    y: null,
+  },
+  currentPopupPosition: {
+    x: null,
+    y: null,
+  },
+  prevMousePosition: {
+    x: null,
+    y: null,
+  },
+
   createRootEl() {
     // console.log('creating root element')
     this.rootElement = document.createElement('div')
     this.rootElement.setAttribute('id', 'ext-font-radar')
     document.body.appendChild(this.rootElement)
   },
+
   start() {
     if (this.started) {
       return
@@ -22,8 +37,25 @@ window.FRApp = {
     this.createRootEl()
     this.bindedOnMouseOver = this.onMouseOver.bind(this)
     document.addEventListener('mouseover', this.bindedOnMouseOver)
+
+    this.initialPopupPosition.x = window.innerWidth - 300 - 50
+    this.initialPopupPosition.y = window.innerHeight / 2 - 500 / 2
+
+    this.setPopupPosition(this.initialPopupPosition)
+
+    this.bindedOnMouseDown = this.onMouseDown.bind(this)
+    this.bindedOnMouseUp = this.onMouseUp.bind(this)
+    this.bindedOnDoubleClick = this.onDoubleClick.bind(this)
+    this.bindedOnMouseMove = this.onMouseMove.bind(this)
+
+    this.rootElement.addEventListener('mousedown', this.bindedOnMouseDown)
+    this.rootElement.addEventListener('mouseup', this.bindedOnMouseUp)
+    this.rootElement.addEventListener('dblclick', this.bindedOnDoubleClick)
+    document.body.addEventListener('mousemove', this.bindedOnMouseMove)
+
     this.started = true
   },
+
   stop() {
     if (!this.started) {
       return
@@ -31,17 +63,25 @@ window.FRApp = {
     // console.log('stop')
     document.body.removeChild(this.rootElement)
     document.removeEventListener('mouseover', this.bindedOnMouseOver)
+
+    this.rootElement.removeEventListener('mousedown', this.bindedOnMouseDown)
+    this.rootElement.removeEventListener('mouseup', this.bindedOnMouseUp)
+    this.rootElement.removeEventListener('dblclick', this.bindedOnDoubleClick)
+    document.body.removeEventListener('mousemove', this.bindedOnMouseMove)
     this.started = false
   },
+
   init() {
     // console.log('init')
     this.addStyles()
   },
+
   addStyles() {
     const stylesEl = document.createElement('style')
     stylesEl.textContent = appStyle
     document.head.appendChild(stylesEl)
   },
+
   onMouseOver(evt) {
     const element = evt.target
 
@@ -177,5 +217,47 @@ window.FRApp = {
       addClasses(el, classes)
       return el
     }
+  },
+
+  onMouseDown(e) {
+    this.isMoving = true
+    this.rootElement.style.cursor = 'grabbing'
+    this.prevMousePosition.x = e.clientX
+    this.prevMousePosition.y = e.clientY
+  },
+
+  onMouseUp() {
+    this.isMoving = false
+    this.rootElement.style.cursor = 'grab'
+  },
+
+  onDoubleClick() {
+    this.setPopupPosition(this.initialPopupPosition)
+  },
+
+  onMouseMove(e) {
+    if (!this.isMoving) {
+      return
+    }
+
+    const deltaMouseX = e.clientX - this.prevMousePosition.x
+    const deltaMouseY = e.clientY - this.prevMousePosition.y
+
+    const newPopupPosition = {
+      x: this.currentPopupPosition.x + deltaMouseX,
+      y: this.currentPopupPosition.y + deltaMouseY,
+    }
+
+    this.setPopupPosition(newPopupPosition)
+
+    this.prevMousePosition.x = e.clientX
+    this.prevMousePosition.y = e.clientY
+  },
+
+  setPopupPosition(position) {
+    this.currentPopupPosition.x = position.x
+    this.currentPopupPosition.y = position.y
+
+    this.rootElement.style.transform = `translate(${this.currentPopupPosition.x}px, ${this.currentPopupPosition.y}px)`
   },
 }
